@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: gismeteo-service
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8887/eureka
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5  
+      
+ 
+server:
+  port: 8443
+  ssl:
+    key-alias: selfsigned_localhost_sslserver
+    key-password: changeit
+    key-store: classpath:ssl-server.jks
+    key-store-provider: SUN
+    key-store-type: JKS  
+  
+  
+forecast-3h-by-coord: testValue
+forecast-6h-by-coord: testValue
+forecast-24h-by-coord: testValue
+current-weather-by-object: testValue	    
+search-cities-by-coord: testValue
+search-cities-by-name: testValue
+search-cities-by-ip: testValue
+  
+---
+ 
+spring:
+  profiles: dev
+eureka:
+  client:
+    enabled: false
+     
+---
+spring:
+  profiles: prod
+eureka:
+  client:
+    enabled: true
+   
+---
+ 
+spring:
+  profiles: test
+eureka:
+  client:
+    enabled: false
+
+   
